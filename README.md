@@ -2,4 +2,4 @@
 An assignment for mobile computing course
 
 # Credits
-Background pattern from subtlepatterns.com
+Background pattern from [subtlepatterns.com](http://subtlepatterns.com/)
