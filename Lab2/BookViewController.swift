@@ -10,7 +10,7 @@ import UIKit
 
 class BookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     // MARK: Properties
-
+    
     
     @IBOutlet weak var titleTextField: UITextField!
     
@@ -26,20 +26,20 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-
     
-
+    
+    
     var book: Book?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Handle the text field’s user input through delegate callbacks.
         titleTextField.delegate = self
-         authorTextField.delegate = self
-         courseTextField.delegate = self
-         isbnTextField.delegate = self
-         priceTextField.delegate = self
+        authorTextField.delegate = self
+        courseTextField.delegate = self
+        isbnTextField.delegate = self
+        priceTextField.delegate = self
         
         
         if let book = book {
@@ -49,10 +49,10 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
             courseTextField.text   = book.course
             isbnTextField.text   = book.isbn
             priceTextField.text   = String(book.price)
-      
+            
         }
         
-              checkValidBookTitle()
+        checkValidBookTitle()
     }
     
     // MARK: UITextFieldDelegate
@@ -66,10 +66,10 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     func textFieldDidEndEditing(textField: UITextField) {
         checkValidBookTitle()
     }
-
+    
     func textFieldDidBeginEditing(textField: UITextField) {
         // Disable the Save button while editing.
-        saveButton.enabled = false
+        //  saveButton.enabled = false
     }
     
     func checkValidBookTitle() {
@@ -111,7 +111,7 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     @IBAction func unwindToBookDetail(sender: UIStoryboardSegue) {
     }
     
-
-
+    
+    
 }
 
