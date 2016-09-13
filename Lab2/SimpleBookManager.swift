@@ -8,29 +8,25 @@
 
 import Foundation
 
+
 class SimpleBookManager: BookManager {
-     var books = [Book]()
-    
-    init(){
+    var books = [Book]()
+    static let sharedInstance  = SimpleBookManager()
+    private init(){
         
         if let savedBooks = loadBooks() {
-            books += savedBooks
+            books = savedBooks
             print("load exsisting books")
         }else {
             // Load the sample data.
             loadSampleBooks()
             print("load sample books")
         }
-        
-        
-        // Load the sample data.
-        loadSampleBooks()
-
-    
     }
     
-    func loadSampleBooks() {
     
+    func loadSampleBooks() {
+        
         let book1 = Book(title: "1000 Nights", author: "Alibaba",course: "Math",  isbn: "1234",  price: 30)
         let book2 = Book(title: "Cinderella",author: "Bawaw", course: "History", isbn: "321",  price: 12)
         let book3 = Book(title: "Three Musketeers", author: "Musketeer", course: "History", isbn: "2152",  price: 52)
@@ -38,7 +34,7 @@ class SimpleBookManager: BookManager {
         let book5 = Book(title: "Shopping Mall", author: "Tyison", course: "Architecture",isbn: "21312",  price: 100)
         books = [book1!, book2!, book3!, book4!, book5!]
     }
-
+    
     func loadBooks() -> [Book]? {
         
         return NSKeyedUnarchiver.unarchiveObjectWithFile(Book.ArchiveURL.path!) as? [Book]
@@ -66,17 +62,13 @@ class SimpleBookManager: BookManager {
         if let index = books.indexOf(book){
             books.removeAtIndex(index)
         }
+        saveChanges()
     }
     
     func moveBookAtIndex(from: Int, toIndex to: Int) {
-        let book = bookAtIndex(from)
-        books.insert(book, atIndex: to)
-        
-        var deleteIndex = from
-        if from > to{
-            deleteIndex = from + 1
-        }
-        books.removeAtIndex(deleteIndex)
+        let element = books.removeAtIndex(from)
+        books.insert(element, atIndex: to)
+        saveChanges()
     }
     
     func minPrice() -> Int {

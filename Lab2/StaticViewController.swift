@@ -11,15 +11,14 @@ import UIKit
 class StatisticViewController: UIViewController {
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-
     
-    var simpleBookManager :SimpleBookManager!
+    
     
     @IBOutlet weak var booknbr: UILabel!
     
     @IBOutlet weak var totalCostText: UILabel!
-
-  
+    
+    
     @IBOutlet weak var mostExpText: UILabel!
     
     @IBOutlet weak var leastExpText: UILabel!
@@ -30,8 +29,8 @@ class StatisticViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        simpleBookManager = appDelegate.simpleBookManager
-        print("view did load")
+        //  simpleBookManager = appDelegate.simpleBookManager
+        //   print("view did load")
         loadData()
         
         
@@ -43,17 +42,17 @@ class StatisticViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        print("Will appear!")
-        simpleBookManager = appDelegate.simpleBookManager
+        // print("Will appear!")
+        //  simpleBookManager = appDelegate.simpleBookManager
         loadData()
     }
     
     func loadData(){
-        booknbr.text = String(simpleBookManager.count())
-        totalCostText.text = String(simpleBookManager.totalCost()) + " SEK"
-        mostExpText.text = String(simpleBookManager.maxPrice()) + " SEK"
-        leastExpText.text = String(simpleBookManager.minPrice()) + " SEK"
-        AverageText.text = String(simpleBookManager.meanPrice()) + " SEK"
+        booknbr.text = String(SimpleBookManager.sharedInstance.count())
+        totalCostText.text = String(SimpleBookManager.sharedInstance.totalCost()) + " SEK"
+        mostExpText.text = String(SimpleBookManager.sharedInstance.maxPrice()) + " SEK"
+        leastExpText.text = String(SimpleBookManager.sharedInstance.minPrice()) + " SEK"
+        AverageText.text = String(SimpleBookManager.sharedInstance.meanPrice()) + " SEK"
     }
     
 }
