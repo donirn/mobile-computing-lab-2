@@ -37,7 +37,7 @@ class SimpleBookManager: BookManager {
     
     func loadBooks() -> [Book]? {
         
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Book.ArchiveURL.path!) as? [Book]
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Book.ArchiveURL!.path!) as? [Book]
     }
     
     func count() -> Int {
@@ -104,7 +104,7 @@ class SimpleBookManager: BookManager {
     
     func saveChanges() {
         // TODO: implement later
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(books, toFile: Book.ArchiveURL.path!)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(books, toFile: Book.ArchiveURL!.path!)
         if !isSuccessfulSave {
             print("Failed to save books...")
         }else{
