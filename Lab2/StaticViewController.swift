@@ -10,7 +10,7 @@ import UIKit
 
 class StatisticViewController: UIViewController {
     
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     
     
@@ -41,7 +41,7 @@ class StatisticViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         // print("Will appear!")
         //  simpleBookManager = appDelegate.simpleBookManager
         loadData()

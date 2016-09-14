@@ -37,14 +37,14 @@ class SimpleBookManager: BookManager {
     
     func loadBooks() -> [Book]? {
         
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Book.ArchiveURL.path!) as? [Book]
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Book.ArchiveURL.path) as? [Book]
     }
     
     func count() -> Int {
         return books.count
     }
     
-    func bookAtIndex(index: Int) -> Book {
+    func bookAtIndex(_ index: Int) -> Book {
         return books[index]
     }
     
@@ -58,21 +58,21 @@ class SimpleBookManager: BookManager {
         return books
     }
     
-    func removeBook(book: Book) {
-        if let index = books.indexOf(book){
-            books.removeAtIndex(index)
+    func removeBook(_ book: Book) {
+        if let index = books.index(of: book){
+            books.remove(at: index)
         }
         saveChanges()
     }
     
-    func moveBookAtIndex(from: Int, toIndex to: Int) {
-        let element = books.removeAtIndex(from)
-        books.insert(element, atIndex: to)
+    func moveBookAtIndex(_ from: Int, toIndex to: Int) {
+        let element = books.remove(at: from)
+        books.insert(element, at: to)
         saveChanges()
     }
     
     func minPrice() -> Int {
-        let book = books.minElement { (book1, book2) -> Bool in
+        let book = books.min { (book1, book2) -> Bool in
             return book1.price < book2.price
         }
         
@@ -80,7 +80,7 @@ class SimpleBookManager: BookManager {
     }
     
     func maxPrice() -> Int {
-        let book = books.maxElement { (book1, book2) -> Bool in
+        let book = books.max { (book1, book2) -> Bool in
             return book1.price < book2.price
         }
         
@@ -104,7 +104,7 @@ class SimpleBookManager: BookManager {
     
     func saveChanges() {
         // TODO: implement later
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(books, toFile: Book.ArchiveURL.path!)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(books, toFile: Book.ArchiveURL.path)
         if !isSuccessfulSave {
             print("Failed to save books...")
         }else{

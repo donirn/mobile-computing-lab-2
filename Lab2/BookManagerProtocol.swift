@@ -13,9 +13,9 @@ protocol BookManager {
     
     func createBook() -> Book
     func allBooks() -> [Book]
-    func removeBook(book:Book)
+    func removeBook(_ book:Book)
     
-    func moveBookAtIndex(from:Int, toIndex to:Int)
+    func moveBookAtIndex(_ from:Int, toIndex to:Int)
     
     func minPrice() -> Int
     func maxPrice() -> Int

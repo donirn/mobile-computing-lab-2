@@ -57,17 +57,17 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     
     // MARK: UITextFieldDelegate
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard.
         textField.resignFirstResponder()
         return true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         checkValidBookTitle()
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         // Disable the Save button while editing.
         //  saveButton.enabled = false
     }
@@ -75,30 +75,30 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     func checkValidBookTitle() {
         // Disable the Save button if the text field is empty.
         let text = titleTextField.text ?? ""
-        saveButton.enabled = !text.isEmpty
+        saveButton.isEnabled = !text.isEmpty
     }
     
     // MARK: UIImagePickerControllerDelegate
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     
     // MARK: Navigation
-    @IBAction func cancel(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
         let isPresentingInAddBookMode = presentingViewController is UINavigationController
         if isPresentingInAddBookMode {
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
         }else {
-            navigationController!.popViewControllerAnimated(true)
+            navigationController!.popViewController(animated: true)
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if saveButton === sender {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let senderButton = sender as? UIBarButtonItem, saveButton === senderButton {
             let title = titleTextField.text ?? ""
             let author = authorTextField.text ?? ""
             let course = courseTextField.text ?? ""
@@ -108,7 +108,7 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         }
     }
     
-    @IBAction func unwindToBookDetail(sender: UIStoryboardSegue) {
+    @IBAction func unwindToBookDetail(_ sender: UIStoryboardSegue) {
     }
     
     

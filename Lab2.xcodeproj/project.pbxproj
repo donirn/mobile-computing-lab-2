@@ -184,9 +184,11 @@
 					CA1902DB1B10E523000271C4 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = LZM8AWAX7J;
+						LastSwiftMigration = 0800;
 					};
 					CA1902EF1B10E523000271C4 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 						TestTargetID = CA1902DB1B10E523000271C4;
 					};
 				};
@@ -382,6 +384,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ramacode.com.lab2;
 				PRODUCT_NAME = Lab2;
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -396,6 +399,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ramacode.com.lab2;
 				PRODUCT_NAME = Lab2;
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -407,6 +411,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.hui.ait;
 				PRODUCT_NAME = Lab2;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lab2.app/Lab2";
 			};
 			name = Debug;
@@ -419,6 +424,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.hui.ait;
 				PRODUCT_NAME = Lab2;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lab2.app/Lab2";
 			};
 			name = Release;

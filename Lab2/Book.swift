@@ -27,8 +27,8 @@ class Book : NSObject, NSCoding {
     
     // MARK: Archiving Paths
     
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("books")
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("books")
     
     // MARK: Initialization
     
@@ -46,20 +46,20 @@ class Book : NSObject, NSCoding {
         }
     }
     // MARK: NSCoding
-    func encodeWithCoder(aCoder: NSCoder){
-        aCoder.encodeObject(title, forKey: PropertyKey.titleKey)
-        aCoder.encodeObject(author, forKey: PropertyKey.authorKey)
-        aCoder.encodeObject(course, forKey: PropertyKey.courseKey)
-        aCoder.encodeObject(isbn, forKey: PropertyKey.isbnKey)
-        aCoder.encodeObject(price, forKey: PropertyKey.priceKey)
+    func encode(with aCoder: NSCoder){
+        aCoder.encode(title, forKey: PropertyKey.titleKey)
+        aCoder.encode(author, forKey: PropertyKey.authorKey)
+        aCoder.encode(course, forKey: PropertyKey.courseKey)
+        aCoder.encode(isbn, forKey: PropertyKey.isbnKey)
+        aCoder.encode(price, forKey: PropertyKey.priceKey)
     }
     required convenience init?(coder aDecoder: NSCoder) {
         
-        let title = aDecoder.decodeObjectForKey(PropertyKey.titleKey) as! String
-        let author = aDecoder.decodeObjectForKey(PropertyKey.authorKey) as! String
-        let course = aDecoder.decodeObjectForKey(PropertyKey.courseKey) as! String
-        let isbn = aDecoder.decodeObjectForKey(PropertyKey.isbnKey) as! String
-        let price = aDecoder.decodeObjectForKey(PropertyKey.priceKey) as! Int
+        let title = aDecoder.decodeObject(forKey: PropertyKey.titleKey) as! String
+        let author = aDecoder.decodeObject(forKey: PropertyKey.authorKey) as! String
+        let course = aDecoder.decodeObject(forKey: PropertyKey.courseKey) as! String
+        let isbn = aDecoder.decodeObject(forKey: PropertyKey.isbnKey) as! String
+        let price = aDecoder.decodeObject(forKey: PropertyKey.priceKey) as! Int
         
         self.init(title: title, author: author, course: course,isbn: isbn, price: price)
         

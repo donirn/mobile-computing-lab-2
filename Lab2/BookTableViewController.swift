@@ -14,9 +14,9 @@ class BookTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-               navigationItem.leftBarButtonItem = editButtonItem()
+               navigationItem.leftBarButtonItem = editButtonItem
         let bgImage = UIImage(named: "subtle_white_feathers")
-        navigationController?.navigationBar.setBackgroundImage(bgImage, forBarMetrics: .Default)
+        navigationController?.navigationBar.setBackgroundImage(bgImage, for: .default)
     }
     
     
@@ -27,18 +27,18 @@ class BookTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return SimpleBookManager.sharedInstance.books.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "BookTableViewCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! BookTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! BookTableViewCell
         
         // Fetches the appropriate book for the data source layout.
         let book = SimpleBookManager.sharedInstance.books[indexPath.row]
@@ -52,16 +52,16 @@ class BookTableViewController: UITableViewController {
     
     
     // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
     
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to toIndexPath: IndexPath) {
         
         SimpleBookManager.sharedInstance.moveBookAtIndex(fromIndexPath.row, toIndex: toIndexPath.row)
         
@@ -69,13 +69,13 @@ class BookTableViewController: UITableViewController {
     
     
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             // Delete the row from the data source
-            SimpleBookManager.sharedInstance.books.removeAtIndex(indexPath.row)
+            SimpleBookManager.sharedInstance.books.remove(at: indexPath.row)
             SimpleBookManager.sharedInstance.saveChanges()
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
         
@@ -85,16 +85,16 @@ class BookTableViewController: UITableViewController {
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == "ShowDetail" {
-            let bookDetailViewController = segue.destinationViewController as! BookDetailViewController
+            let bookDetailViewController = segue.destination as! BookDetailViewController
             
             // Get the cell that generated this segue.
             if let selectedBookCell = sender as? BookTableViewCell {
-                let indexPath = tableView.indexPathForCell(selectedBookCell)!
-                let selectedBook = SimpleBookManager.sharedInstance.books[indexPath.row]
+                let indexPath = tableView.indexPath(for: selectedBookCell)!
+                let selectedBook = SimpleBookManager.sharedInstance.books[(indexPath as NSIndexPath).row]
                 bookDetailViewController.book = selectedBook
             }
         }
@@ -104,19 +104,19 @@ class BookTableViewController: UITableViewController {
     }
     
     
-    @IBAction func unwindToBookList(sender: UIStoryboardSegue) {
+    @IBAction func unwindToBookList(_ sender: UIStoryboardSegue) {
         
         
-        if let sourceViewController = sender.sourceViewController as? BookViewController, book = sourceViewController.book {
+        if let sourceViewController = sender.source as? BookViewController, let book = sourceViewController.book {
             // Add a new book item.
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 SimpleBookManager.sharedInstance.books[selectedIndexPath.row] = book
-                tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
             }else {
                 // Add a new book.
-                let newIndexPath = NSIndexPath(forRow: SimpleBookManager.sharedInstance.books.count, inSection: 0)
+                let newIndexPath = IndexPath(row: SimpleBookManager.sharedInstance.books.count, section: 0)
                 SimpleBookManager.sharedInstance.books.append(book)
-                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                tableView.insertRows(at: [newIndexPath], with: .bottom)
             }
             SimpleBookManager.sharedInstance.saveChanges()
             print(String( SimpleBookManager.sharedInstance.books.count))
