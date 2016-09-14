@@ -397,7 +397,7 @@
         <!--Retrieve Book-->
         <scene sceneID="meP-Il-bbL">
             <objects>
-                <tableViewController id="wBq-ug-gNH" sceneMemberID="viewController">
+                <tableViewController id="wBq-ug-gNH" customClass="SearchBookTableViewController" customModule="Lab2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="z2n-2c-Vra">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
