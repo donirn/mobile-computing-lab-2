@@ -44,6 +44,8 @@ class BookTableViewController: UITableViewController {
         let book = SimpleBookManager.sharedInstance.books[indexPath.row]
         
         cell.titleLabel.text = book.title
+        cell.authorLabel.text = "by \(book.author)"
+        cell.priceLabel.text = "\(book.price) SEK"
         
         return cell
     }
