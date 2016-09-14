@@ -84,7 +84,7 @@
                     <navigationItem key="navigationItem" title="Course Books" id="eSY-WF-TJg">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5IV-og-BzF">
                             <connections>
-                                <segue destination="4Dc-rs-EjQ" kind="show" identifier="AddBook" id="bnZ-jB-bIG"/>
+                                <segue destination="wBq-ug-gNH" kind="show" id="nJE-dI-nLL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -392,7 +392,36 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2320" y="654"/>
+            <point key="canvasLocation" x="2424" y="266"/>
+        </scene>
+        <!--Retrieve Book-->
+        <scene sceneID="meP-Il-bbL">
+            <objects>
+                <tableViewController id="wBq-ug-gNH" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="z2n-2c-Vra">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="z8X-DB-wGY">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z8X-DB-wGY" id="dKK-AB-Z70">
+                                    <frame key="frameInset" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="wBq-ug-gNH" id="Wub-v5-pBR"/>
+                            <outlet property="delegate" destination="wBq-ug-gNH" id="24b-3i-Sfy"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Retrieve Book" id="OEe-S8-vCd"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="23v-OA-Sac" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1455" y="917"/>
         </scene>
         <!--Statistics-->
         <scene sceneID="Ejc-Ma-2R1">
@@ -569,24 +598,6 @@
             </objects>
             <point key="canvasLocation" x="-212" y="357"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="40h-hT-h4R">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4Dc-rs-EjQ" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="H1z-FV-Gbp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="NrQ-GC-Mld"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XOr-OQ-IVj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1508" y="817"/>
-        </scene>
         <!--Statistics-->
         <scene sceneID="3Es-sY-Hsi">
             <objects>
@@ -611,8 +622,5 @@
         <image name="collectionIcon" width="26" height="26"/>
         <image name="statisticsIcon" width="26" height="26"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="o94-hG-STg"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.59607845540000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
