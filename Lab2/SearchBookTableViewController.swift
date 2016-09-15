@@ -9,18 +9,30 @@
 import UIKit
 
 class SearchBookTableViewController: UITableViewController {
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchBar.delegate = self
+    }
 }
 
+// MARK: - Table view data source
 extension SearchBookTableViewController{
-    // MARK: - Table view data source
-    
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 0
+    }
+}
+
+extension SearchBookTableViewController: UISearchBarDelegate{
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        print("search pressed: \(searchBar.text)")
     }
 }
