@@ -62,6 +62,26 @@ extension SearchBookTableViewController: UISearchBarDelegate{
     }
     
     func updateSearchResults(data: NSData){
-        print(data)
+        do{
+            let dict = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            if let docs = (dict as? NSDictionary)?["docs"] as? [NSDictionary]{
+                var books = [Book]()
+                for doc in docs{
+                    if let title = doc["title"] as? String,
+                        let isbn = (doc["isbn"] as? NSArray)?.firstObject as? String,
+                        let author = (doc["author_name"] as? NSArray)?.firstObject as? String{
+                        
+                        if let book = Book(title: title, author: author, course: "", isbn: isbn, price: 0){
+                            books.append(book)
+                        }
+                    }
+                }
+                for book in books{
+                    print("\(book.isbn): \(book.title)")
+                }
+            }
+        } catch let jsonError{
+            print(jsonError)
+        }
     }
 }
