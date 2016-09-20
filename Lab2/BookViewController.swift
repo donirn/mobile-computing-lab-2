@@ -53,6 +53,8 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         }
         
         checkValidBookTitle()
+        
+        titleTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), forControlEvents: .EditingChanged)
     }
     
     // MARK: UITextFieldDelegate
@@ -63,7 +65,7 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         return true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidChange(textField: UITextField){
         checkValidBookTitle()
     }
     
