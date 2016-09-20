@@ -14,7 +14,9 @@ class BookTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = editButtonItem()
+               navigationItem.leftBarButtonItem = editButtonItem()
+        let bgImage = UIImage(named: "subtle_white_feathers")
+        navigationController?.navigationBar.setBackgroundImage(bgImage, forBarMetrics: .Default)
     }
     
     
@@ -42,6 +44,8 @@ class BookTableViewController: UITableViewController {
         let book = SimpleBookManager.sharedInstance.books[indexPath.row]
         
         cell.titleLabel.text = book.title
+        cell.authorLabel.text = "by \(book.author)"
+        cell.priceLabel.text = "\(book.price) SEK"
         
         return cell
     }
