@@ -14,6 +14,8 @@ class SearchBookTableViewController: UITableViewController {
     let defaultSession = NSURLSession(configuration: .defaultSessionConfiguration())
     var dataTask: NSURLSessionDataTask?
     
+    var books = [Book]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchController.dimsBackgroundDuringPresentation = false
@@ -30,7 +32,13 @@ extension SearchBookTableViewController{
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return books.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("searchBookCell") ?? UITableViewCell()
+        cell.textLabel?.text = books[indexPath.row].title
+        return cell
     }
 }
 
@@ -65,7 +73,7 @@ extension SearchBookTableViewController: UISearchBarDelegate{
         do{
             let dict = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
             if let docs = (dict as? NSDictionary)?["docs"] as? [NSDictionary]{
-                var books = [Book]()
+                books = [Book]()
                 for doc in docs{
                     if let title = doc["title"] as? String,
                         let isbn = (doc["isbn"] as? NSArray)?.firstObject as? String,
@@ -76,9 +84,10 @@ extension SearchBookTableViewController: UISearchBarDelegate{
                         }
                     }
                 }
-                for book in books{
-                    print("\(book.isbn): \(book.title)")
-                }
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.reloadData()
+                })
             }
         } catch let jsonError{
             print(jsonError)
