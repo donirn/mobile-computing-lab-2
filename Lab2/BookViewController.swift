@@ -11,23 +11,12 @@ import UIKit
 class BookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     // MARK: Properties
     
-    
-    @IBOutlet weak var titleTextField: UITextField!
-    
-    @IBOutlet weak var authorTextField: UITextField!
-    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var courseTextField: UITextField!
-    
     @IBOutlet weak var isbnTextField: UITextField!
-    
-    
     @IBOutlet weak var priceTextField: UITextField!
-    
-    
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    
-    
-    
     
     var book: Book?
     
@@ -35,8 +24,6 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         super.viewDidLoad()
         
         // Handle the text field’s user input through delegate callbacks.
-        titleTextField.delegate = self
-        authorTextField.delegate = self
         courseTextField.delegate = self
         isbnTextField.delegate = self
         priceTextField.delegate = self
@@ -44,17 +31,12 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         
         if let book = book {
             navigationItem.title = book.title
-            titleTextField.text   = book.title
-            authorTextField.text   = book.author
+            titleLabel.text   = book.title
+            authorLabel.text   = book.author
             courseTextField.text   = book.course
             isbnTextField.text   = book.isbn
             priceTextField.text   = String(book.price)
-            
         }
-        
-        checkValidBookTitle()
-        
-        titleTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), forControlEvents: .EditingChanged)
     }
     
     // MARK: UITextFieldDelegate
@@ -65,23 +47,9 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         return true
     }
     
-    func textFieldDidChange(textField: UITextField){
-        checkValidBookTitle()
-    }
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        // Disable the Save button while editing.
-        //  saveButton.enabled = false
-    }
-    
-    func checkValidBookTitle() {
-        // Disable the Save button if the text field is empty.
-        let text = titleTextField.text ?? ""
-        saveButton.enabled = !text.isEmpty
-    }
-    
     // MARK: UIImagePickerControllerDelegate
     
+    // TODO: take a look if it is used
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
         dismissViewControllerAnimated(true, completion: nil)
@@ -101,8 +69,8 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if saveButton === sender {
-            let title = titleTextField.text ?? ""
-            let author = authorTextField.text ?? ""
+            let title = titleLabel.text ?? ""
+            let author = authorLabel.text ?? ""
             let course = courseTextField.text ?? ""
             let isbn = isbnTextField.text ?? ""
             let price = Int(priceTextField.text!) ?? 0
