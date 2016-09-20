@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="86" width="320" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="50" tableViewCell="YQV-Wp-cdh" id="TpD-sJ-fVf">
-                                    <frame key="frameInset" width="320" height="58"/>
+                                    <frame key="frameInset" width="320" height="58.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="584" placeholderIntrinsicHeight="73" text="gP" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afY-mg-s8l">
@@ -49,13 +49,13 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="afY-mg-s8l" firstAttribute="leading" secondItem="TpD-sJ-fVf" secondAttribute="leadingMargin" id="60K-z2-ffL"/>
+                                        <constraint firstItem="afY-mg-s8l" firstAttribute="leading" secondItem="TpD-sJ-fVf" secondAttribute="leadingMargin" constant="8" id="60K-z2-ffL"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="afY-mg-s8l" secondAttribute="trailing" id="BvV-hI-amh"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="L6U-do-uN4" secondAttribute="trailing" id="TXb-0R-vaV"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="L6U-do-uN4" secondAttribute="trailing" constant="8" id="TXb-0R-vaV"/>
                                         <constraint firstItem="5Du-PQ-bAP" firstAttribute="top" secondItem="afY-mg-s8l" secondAttribute="bottom" constant="4" id="Ugc-tn-pUa"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="L6U-do-uN4" secondAttribute="bottom" id="aBd-Zh-093"/>
+                                        <constraint firstItem="L6U-do-uN4" firstAttribute="baseline" secondItem="5Du-PQ-bAP" secondAttribute="baseline" id="VpQ-MU-B3a"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="5Du-PQ-bAP" secondAttribute="bottom" id="dtD-lJ-A5d"/>
-                                        <constraint firstItem="5Du-PQ-bAP" firstAttribute="leading" secondItem="TpD-sJ-fVf" secondAttribute="leadingMargin" id="hIK-J7-5cR"/>
+                                        <constraint firstItem="5Du-PQ-bAP" firstAttribute="leading" secondItem="TpD-sJ-fVf" secondAttribute="leadingMargin" constant="8" id="hIK-J7-5cR"/>
                                         <constraint firstItem="L6U-do-uN4" firstAttribute="leading" secondItem="5Du-PQ-bAP" secondAttribute="trailing" constant="4" id="inG-BU-FLv"/>
                                         <constraint firstItem="L6U-do-uN4" firstAttribute="centerY" secondItem="TpD-sJ-fVf" secondAttribute="centerY" id="pRV-PG-ZoP"/>
                                         <constraint firstItem="afY-mg-s8l" firstAttribute="top" secondItem="TpD-sJ-fVf" secondAttribute="topMargin" id="yuP-wY-TAr"/>
