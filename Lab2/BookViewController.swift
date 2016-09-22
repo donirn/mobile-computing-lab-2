@@ -28,7 +28,6 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         isbnTextField.delegate = self
         priceTextField.delegate = self
         
-        
         if let book = book {
             navigationItem.title = book.title
             titleLabel.text   = book.title
@@ -36,15 +35,19 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
             courseTextField.text   = book.course
             isbnTextField.text   = book.isbn
             priceTextField.text   = String(book.price)
+        } else {
+            saveButton.enabled = false
         }
     }
     
     @IBAction func retrieveBook(sender: AnyObject) {
         guard let isbn = isbnTextField.text else {return}
         BookService.shared.requestBook(isbn) { book in
+            self.book = book
             dispatch_async(dispatch_get_main_queue(), {
                 self.titleLabel.text = book?.title
                 self.authorLabel.text = book?.author
+                self.saveButton.enabled = true
             })
         }
     }
@@ -79,12 +82,8 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if saveButton === sender {
-            let title = titleLabel.text ?? ""
-            let author = authorLabel.text ?? ""
-            let course = courseTextField.text ?? ""
-            let isbn = isbnTextField.text ?? ""
-            let price = Int(priceTextField.text!) ?? 0
-            book = Book(title: title, author: author, course: course,isbn: isbn, price: price)
+            book?.course = courseTextField.text ?? ""
+            book?.price = Int(priceTextField.text ?? "") ?? 0
         }
     }
     
