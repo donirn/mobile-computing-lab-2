@@ -63,7 +63,7 @@ class Book : NSObject, NSCoding {
         let course = aDecoder.decodeObjectForKey(PropertyKey.courseKey) as! String
         let isbn = aDecoder.decodeObjectForKey(PropertyKey.isbnKey) as! String
         let price = aDecoder.decodeObjectForKey(PropertyKey.priceKey) as! Int
-        let publisher = aDecoder.decodeObjectForKey(PropertyKey.publisherKey) as? String ?? ""
+        let publisher = aDecoder.decodeObjectForKey(PropertyKey.publisherKey) as? String ?? " "
         
         self.init(title: title, author: author, course: course,isbn: isbn, price: price, publisher: publisher)
         

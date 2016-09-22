@@ -15,6 +15,7 @@ class BookDetailViewController: UIViewController,UITextFieldDelegate, UINavigati
     @IBOutlet weak var authorTextField: UILabel!
     @IBOutlet weak var titleTextField: UILabel!
     @IBOutlet weak var courseTextField: UILabel!
+    @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
     
     var book:Book?
@@ -27,6 +28,7 @@ class BookDetailViewController: UIViewController,UITextFieldDelegate, UINavigati
             authorTextField.text  = book.author
             titleTextField.text = book.title
             courseTextField.text  = book.course
+            publisherLabel.text = book.publisher
         }
         
         // Do any additional setup after loading the view.
