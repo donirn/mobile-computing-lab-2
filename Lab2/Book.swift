@@ -15,7 +15,7 @@ class Book : NSObject, NSCoding {
     var course: String
     var isbn: String
     var price: Int
-    
+    var publisher: String
     
     struct PropertyKey {
         static let titleKey = "title"
@@ -23,6 +23,7 @@ class Book : NSObject, NSCoding {
         static let courseKey = "course"
         static let isbnKey = "isbn"
         static let priceKey = "price"
+        static let publisherKey = "publisher"
     }
     
     // MARK: Archiving Paths
@@ -32,13 +33,14 @@ class Book : NSObject, NSCoding {
     
     // MARK: Initialization
     
-    init?(title: String, author: String, course: String,isbn: String, price: Int) {
+    init?(title: String, author: String, course: String,isbn: String, price: Int, publisher: String) {
         // Initialize stored properties.
         self.title = title
         self.author = author
         self.course = course
         self.isbn = isbn
         self.price  = price
+        self.publisher = publisher
         super.init()
         // Initialization should fail if there is no title.
         if title.isEmpty {
@@ -52,6 +54,7 @@ class Book : NSObject, NSCoding {
         aCoder.encodeObject(course, forKey: PropertyKey.courseKey)
         aCoder.encodeObject(isbn, forKey: PropertyKey.isbnKey)
         aCoder.encodeObject(price, forKey: PropertyKey.priceKey)
+        aCoder.encodeObject(publisher, forKey: PropertyKey.publisherKey)
     }
     required convenience init?(coder aDecoder: NSCoder) {
         
@@ -60,8 +63,9 @@ class Book : NSObject, NSCoding {
         let course = aDecoder.decodeObjectForKey(PropertyKey.courseKey) as! String
         let isbn = aDecoder.decodeObjectForKey(PropertyKey.isbnKey) as! String
         let price = aDecoder.decodeObjectForKey(PropertyKey.priceKey) as! Int
+        let publisher = aDecoder.decodeObjectForKey(PropertyKey.publisherKey) as? String ?? ""
         
-        self.init(title: title, author: author, course: course,isbn: isbn, price: price)
+        self.init(title: title, author: author, course: course,isbn: isbn, price: price, publisher: publisher)
         
     }
     

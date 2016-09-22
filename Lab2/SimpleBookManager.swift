@@ -27,11 +27,11 @@ class SimpleBookManager: BookManager {
     
     func loadSampleBooks() {
         
-        let book1 = Book(title: "1000 Nights", author: "Alibaba",course: "Math",  isbn: "1234",  price: 30)
-        let book2 = Book(title: "Cinderella",author: "Bawaw", course: "History", isbn: "321",  price: 12)
-        let book3 = Book(title: "Three Musketeers", author: "Musketeer", course: "History", isbn: "2152",  price: 52)
-        let book4 = Book(title: "Snow White", author: "Greela", course: "Math", isbn: "6634",  price: 32)
-        let book5 = Book(title: "Shopping Mall", author: "Tyison", course: "Architecture",isbn: "21312",  price: 100)
+        let book1 = Book(title: "1000 Nights", author: "Alibaba",course: "Math",  isbn: "1234",  price: 30, publisher: "New York Times")
+        let book2 = Book(title: "Cinderella",author: "Bawaw", course: "History", isbn: "321",  price: 12, publisher: "New York Times")
+        let book3 = Book(title: "Three Musketeers", author: "Musketeer", course: "History", isbn: "2152",  price: 52, publisher: "New York Times")
+        let book4 = Book(title: "Snow White", author: "Greela", course: "Math", isbn: "6634",  price: 32, publisher: "New York Times")
+        let book5 = Book(title: "Shopping Mall", author: "Tyison", course: "Architecture",isbn: "21312",  price: 100, publisher: "New York Times")
         books = [book1!, book2!, book3!, book4!, book5!]
     }
     
@@ -49,7 +49,7 @@ class SimpleBookManager: BookManager {
     }
     
     func createBook() -> Book {
-        let book = Book(title: "", author: "",course: "",  isbn: "",  price: 0)
+        let book = Book(title: "", author: "",course: "",  isbn: "",  price: 0, publisher: "")
         books.append(book!)
         return book!
     }

@@ -47,8 +47,9 @@ class BookService {
             let title = bookDict["title"] as? String ?? ""
             let author = ((bookDict["authors"] as? NSArray)?.firstObject as? NSDictionary)?["name"] as? String ?? ""
             let cover = (bookDict["cover"] as? NSDictionary)?["medium"] as? String ?? ""
+            let publisher = ((bookDict["publishers"] as? NSArray)?.firstObject as? NSDictionary)?["name"] as? String ?? ""
             
-            return Book(title: title, author: author, course: "", isbn: "", price: 0)
+            return Book(title: title, author: author, course: "", isbn: "", price: 0, publisher: publisher)
         } catch let jsonError{
             print(jsonError)
             return nil
