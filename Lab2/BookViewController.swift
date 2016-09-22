@@ -13,6 +13,7 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var courseTextField: UITextField!
     @IBOutlet weak var isbnTextField: UITextField!
     @IBOutlet weak var priceTextField: UITextField!
@@ -36,6 +37,7 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
             courseTextField.text   = book.course
             isbnTextField.text   = book.isbn
             priceTextField.text   = String(book.price)
+            publisherLabel.text = book.publisher
             
             isbnTextField.enabled = false
             searchWidthConstraint.constant = 0
@@ -51,6 +53,7 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
             dispatch_async(dispatch_get_main_queue(), {
                 self.titleLabel.text = book?.title
                 self.authorLabel.text = book?.author
+                self.publisherLabel.text = book?.publisher
                 self.saveButton.enabled = true
             })
         }
