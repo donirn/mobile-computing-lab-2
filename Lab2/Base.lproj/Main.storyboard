@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="86" width="320" height="59"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="50" tableViewCell="YQV-Wp-cdh" id="TpD-sJ-fVf">
-                                    <frame key="frameInset" width="320" height="58"/>
+                                    <frame key="frameInset" width="320" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="584" placeholderIntrinsicHeight="73" text="gP" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afY-mg-s8l">
@@ -273,6 +273,9 @@
                                                     <constraint firstAttribute="width" constant="56" id="LBB-Xm-ARq"/>
                                                 </constraints>
                                                 <state key="normal" title="Search"/>
+                                                <connections>
+                                                    <action selector="retrieveBook:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5kV-gD-Hro"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>

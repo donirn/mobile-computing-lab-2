@@ -39,6 +39,16 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         }
     }
     
+    @IBAction func retrieveBook(sender: AnyObject) {
+        guard let isbn = isbnTextField.text else {return}
+        BookService.shared.requestBook(isbn) { book in
+            dispatch_async(dispatch_get_main_queue(), {
+                self.titleLabel.text = book?.title
+                self.authorLabel.text = book?.author
+            })
+        }
+    }
+    
     // MARK: UITextFieldDelegate
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
