@@ -404,6 +404,7 @@
                         <outlet property="isbnTextField" destination="d2v-0J-jL0" id="q77-LY-9eY"/>
                         <outlet property="priceTextField" destination="Rty-Lg-SbX" id="dWe-CL-jxr"/>
                         <outlet property="saveButton" destination="zH4-dM-PV7" id="vA9-Bq-2Nr"/>
+                        <outlet property="searchWidthConstraint" destination="LBB-Xm-ARq" id="92u-oQ-l42"/>
                         <outlet property="titleLabel" destination="w7V-5w-pqo" id="NTB-UA-Pf4"/>
                     </connections>
                 </viewController>

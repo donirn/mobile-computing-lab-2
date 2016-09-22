@@ -17,6 +17,7 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     @IBOutlet weak var isbnTextField: UITextField!
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var searchWidthConstraint: NSLayoutConstraint!
     
     var book: Book?
     
@@ -35,6 +36,9 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
             courseTextField.text   = book.course
             isbnTextField.text   = book.isbn
             priceTextField.text   = String(book.price)
+            
+            isbnTextField.enabled = false
+            searchWidthConstraint.constant = 0
         } else {
             saveButton.enabled = false
         }
