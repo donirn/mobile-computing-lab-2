@@ -12,15 +12,10 @@ class BookService {
     static let shared = BookService()
     private init(){}
     
-    let session = NSURLSession(configuration:.defaultSessionConfiguration())
-    var dataTask: NSURLSessionDataTask?
-    typealias BookCompletionHandler = (book: Book?) -> Void
+    private let session = NSURLSession(configuration:.defaultSessionConfiguration())
+    private var dataTask: NSURLSessionDataTask?
     
-    enum Error: ErrorType {
-        case UrlString, StatusCode(code: Int?), NullData
-    }
-    
-    func requestBook(isbn: String, completion: BookCompletionHandler){
+    func requestBook(isbn: String, completion: (book: Book?) -> Void){
         guard let url = NSURL(string: "https://openlibrary.org/api/books?format=json&jscmd=data&bibkeys=ISBN:" + isbn) else {completion(book: nil); return}
         
         dataTask?.cancel()
