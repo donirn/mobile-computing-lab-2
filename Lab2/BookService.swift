@@ -17,13 +17,11 @@ class BookService {
     typealias BookCompletionHandler = (inner: () throws -> NSData) -> Void
     
     enum Error: ErrorType {
-        case Encoding, UrlString, StatusCode(code: Int?), NullData
+        case UrlString, StatusCode(code: Int?), NullData
     }
     
     func requestBook(isbn: String, completion: BookCompletionHandler){
-        let expectedCharSet = NSCharacterSet.URLQueryAllowedCharacterSet()
-        guard let searchTerm = isbn.stringByAddingPercentEncodingWithAllowedCharacters(expectedCharSet) else {completion(inner: {throw Error.Encoding}); return}
-        guard let url = NSURL(string: "https://openlibrary.org/search.json?q=" + searchTerm) else {completion(inner: {throw Error.UrlString}); return}
+        guard let url = NSURL(string: "https://openlibrary.org/api/books?format=json&jscmd=data&bibkeys=ISBN:" + isbn) else {completion(inner: {throw Error.UrlString}); return}
         
         dataTask?.cancel()
         dataTask = session.dataTaskWithURL(url){
