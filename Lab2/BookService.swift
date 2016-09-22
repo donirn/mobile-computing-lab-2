@@ -14,24 +14,24 @@ class BookService {
     
     let session = NSURLSession(configuration:.defaultSessionConfiguration())
     var dataTask: NSURLSessionDataTask?
-    typealias BookCompletionHandler = (inner: () throws -> NSData) -> Void
+    typealias BookCompletionHandler = (book: Book?) -> Void
     
     enum Error: ErrorType {
         case UrlString, StatusCode(code: Int?), NullData
     }
     
     func requestBook(isbn: String, completion: BookCompletionHandler){
-        guard let url = NSURL(string: "https://openlibrary.org/api/books?format=json&jscmd=data&bibkeys=ISBN:" + isbn) else {completion(inner: {throw Error.UrlString}); return}
+        guard let url = NSURL(string: "https://openlibrary.org/api/books?format=json&jscmd=data&bibkeys=ISBN:" + isbn) else {completion(book: nil); return}
         
         dataTask?.cancel()
         dataTask = session.dataTaskWithURL(url){
             data, response, error in
             
-            guard error == nil else { completion(inner: {throw error!}); return}
+            guard error == nil else { completion(book: nil); return}
             let statusCode = (response as? NSHTTPURLResponse)?.statusCode
-            guard statusCode == 200 else { completion(inner: {throw Error.StatusCode(code: statusCode)});return}
-            guard let data = data else {completion(inner: {throw Error.NullData}) ;return}
-            completion(inner: {return data})
+            guard statusCode == 200 else { completion(book: nil);return}
+            guard let data = data else {completion(book: nil) ;return}
+            completion(book: self.getBook(data))
             dispatch_async(dispatch_get_main_queue()) {
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             }
@@ -39,5 +39,9 @@ class BookService {
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         dataTask?.resume()
+    }
+    
+    func getBook(data: NSData) -> Book?{
+        return nil
     }
 }
