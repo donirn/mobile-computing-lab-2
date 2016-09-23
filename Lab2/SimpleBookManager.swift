@@ -103,7 +103,6 @@ class SimpleBookManager: BookManager {
     }
     
     func saveChanges() {
-        // TODO: implement later
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(books, toFile: Book.ArchiveURL!.path!)
         if !isSuccessfulSave {
             print("Failed to save books...")
