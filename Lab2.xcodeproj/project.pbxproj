@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		852863BD1D93A62C008D87F3 /* BookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852863BC1D93A62C008D87F3 /* BookService.swift */; };
-		85E7BC8C1D979C5400893B43 /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E7BC8B1D979C5400893B43 /* UIImageView+Download.swift */; };
-		85E7BC8E1D979CED00893B43 /* UIImage+Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E7BC8D1D979CED00893B43 /* UIImage+Store.swift */; };
+		85E7BC901D97B80300893B43 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E7BC8F1D97B80300893B43 /* ImageService.swift */; };
 		A50BF3651D84A9E400FE1452 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BF3641D84A9E400FE1452 /* BookDetailViewController.swift */; };
 		A50BF3951D8592DB00FE1452 /* StaticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BF3941D8592DB00FE1452 /* StaticViewController.swift */; };
 		A50BF39B1D85948500FE1452 /* BookManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50BF39A1D85948500FE1452 /* BookManagerProtocol.swift */; };
@@ -38,8 +37,7 @@
 
 /* Begin PBXFileReference section */
 		852863BC1D93A62C008D87F3 /* BookService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookService.swift; sourceTree = "<group>"; };
-		85E7BC8B1D979C5400893B43 /* UIImageView+Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
-		85E7BC8D1D979CED00893B43 /* UIImage+Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Store.swift"; sourceTree = "<group>"; };
+		85E7BC8F1D97B80300893B43 /* ImageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		A50BF3641D84A9E400FE1452 /* BookDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookDetailViewController.swift; path = Lab2/BookDetailViewController.swift; sourceTree = SOURCE_ROOT; };
 		A50BF3941D8592DB00FE1452 /* StaticViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StaticViewController.swift; path = Lab2/StaticViewController.swift; sourceTree = SOURCE_ROOT; };
 		A50BF39A1D85948500FE1452 /* BookManagerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookManagerProtocol.swift; path = Lab2/BookManagerProtocol.swift; sourceTree = SOURCE_ROOT; };
@@ -124,8 +122,7 @@
 				CA1902DF1B10E523000271C4 /* AppDelegate.swift */,
 				CA734E341B155077001A6F80 /* Book.swift */,
 				852863BC1D93A62C008D87F3 /* BookService.swift */,
-				85E7BC8B1D979C5400893B43 /* UIImageView+Download.swift */,
-				85E7BC8D1D979CED00893B43 /* UIImage+Store.swift */,
+				85E7BC8F1D97B80300893B43 /* ImageService.swift */,
 				CA1902E31B10E523000271C4 /* Main.storyboard */,
 				CA96F92A1B1144F7000CC7F8 /* Assets.xcassets */,
 				CA1902E81B10E523000271C4 /* LaunchScreen.storyboard */,
@@ -253,8 +250,7 @@
 				CA1902E01B10E523000271C4 /* AppDelegate.swift in Sources */,
 				A50BF39B1D85948500FE1452 /* BookManagerProtocol.swift in Sources */,
 				852863BD1D93A62C008D87F3 /* BookService.swift in Sources */,
-				85E7BC8E1D979CED00893B43 /* UIImage+Store.swift in Sources */,
-				85E7BC8C1D979C5400893B43 /* UIImageView+Download.swift in Sources */,
+				85E7BC901D97B80300893B43 /* ImageService.swift in Sources */,
 				A50BF3951D8592DB00FE1452 /* StaticViewController.swift in Sources */,
 				CA5D06031B162F2300095F0F /* BookTableViewCell.swift in Sources */,
 				CA5D06011B162F2300095F0F /* BookTableViewController.swift in Sources */,

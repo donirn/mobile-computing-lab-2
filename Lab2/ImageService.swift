@@ -1,5 +1,5 @@
 //
-//  UIImageView+Download.swift
+//  ImageService.swift
 //  Lab2
 //
 //  Created by Doni Ramadhan on 25/09/16.
@@ -8,9 +8,12 @@
 
 import UIKit
 
-extension UIImageView {
+class ImageService {
+    static let shared = ImageService()
+    private init(){}
+    
     func getImage(id: String, link: String, completion: (image: UIImage) -> Void){
-        if let image = UIImage(id: id){
+        if let image = loadImage(id){
             // retrieved locally
             completion(image: image)
         } else {
@@ -28,8 +31,26 @@ extension UIImageView {
                 let data = data where error == nil,
                 let image = UIImage(data: data)
                 else { return }
-            image.saveImage(id)
+            self.saveImage(image, id: id)
             completion(image: image)
             }.resume()
+    }
+    
+    private func saveImage(image: UIImage, id: String){
+        // Create path.
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        guard let firstPath = paths.first else {return}
+        let filePath = "\(firstPath)/\(id).png"
+        
+        // Save image.
+        UIImagePNGRepresentation(image)?.writeToFile(filePath, atomically: true)
+    }
+    
+    private func loadImage(id: String) -> UIImage?{
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        guard let firstPath = paths.first else {return nil}
+        let filePath = "\(firstPath)/\(id).png"
+        
+        return UIImage(contentsOfFile: filePath)
     }
 }
