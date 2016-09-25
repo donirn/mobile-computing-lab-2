@@ -26,13 +26,11 @@ class SimpleBookManager: BookManager {
     
     
     func loadSampleBooks() {
+        guard let book1 = Book(title: "Zen speaks", author: "Zhizhong Cai", course: "Literature", isbn: "0385472579", price: 100, publisher: "Anchor Books", coverLink: "https://covers.openlibrary.org/b/id/240726-M.jpg") else {return}
         
-        let book1 = Book(title: "1000 Nights", author: "Alibaba",course: "Math",  isbn: "1234",  price: 30)
-        let book2 = Book(title: "Cinderella",author: "Bawaw", course: "History", isbn: "321",  price: 12)
-        let book3 = Book(title: "Three Musketeers", author: "Musketeer", course: "History", isbn: "2152",  price: 52)
-        let book4 = Book(title: "Snow White", author: "Greela", course: "Math", isbn: "6634",  price: 32)
-        let book5 = Book(title: "Shopping Mall", author: "Tyison", course: "Architecture",isbn: "21312",  price: 100)
-        books = [book1!, book2!, book3!, book4!, book5!]
+        guard let book2 = Book(title: "The adventures of Tom Sawyer", author: "Mark Twain", course: "Fiction", isbn: "0451526538", price: 50, publisher: "Signet Classic", coverLink: "https://covers.openlibrary.org/b/id/295577-M.jpg") else {return}
+        
+        books = [book1, book2]
     }
     
     func loadBooks() -> [Book]? {
@@ -49,7 +47,7 @@ class SimpleBookManager: BookManager {
     }
     
     func createBook() -> Book {
-        let book = Book(title: "", author: "",course: "",  isbn: "",  price: 0)
+        let book = Book(title: "", author: "",course: "",  isbn: "",  price: 0, publisher: "", coverLink: "")
         books.append(book!)
         return book!
     }
@@ -103,7 +101,6 @@ class SimpleBookManager: BookManager {
     }
     
     func saveChanges() {
-        // TODO: implement later
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(books, toFile: Book.ArchiveURL!.path!)
         if !isSuccessfulSave {
             print("Failed to save books...")
