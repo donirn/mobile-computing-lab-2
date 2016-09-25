@@ -408,12 +408,20 @@
                                     <constraint firstItem="Aw8-dm-yUY" firstAttribute="leading" secondItem="CdW-ab-L9X" secondAttribute="leading" id="wzi-TP-CA5"/>
                                 </constraints>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rHF-2h-AKJ">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="1xS-1A-PS5"/>
+                                    <constraint firstAttribute="height" constant="128" id="SSH-KH-Tdp"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Clv-a4-dGX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3Iw-VA-lRW"/>
                             <constraint firstItem="Clv-a4-dGX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="HjK-RI-vxV"/>
+                            <constraint firstItem="rHF-2h-AKJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Jqf-4R-G38"/>
                             <constraint firstItem="Clv-a4-dGX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="UFd-rh-b5z"/>
+                            <constraint firstItem="rHF-2h-AKJ" firstAttribute="top" secondItem="Clv-a4-dGX" secondAttribute="bottom" constant="8" id="cr2-DX-MFu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Book" id="qx4-RS-RMK">
@@ -431,6 +439,7 @@
                     <connections>
                         <outlet property="authorLabel" destination="Dri-qk-SOv" id="htu-Mc-rH3"/>
                         <outlet property="courseTextField" destination="G4c-ka-WrW" id="6Uz-Io-eDU"/>
+                        <outlet property="coverImageView" destination="rHF-2h-AKJ" id="gyp-oo-nQq"/>
                         <outlet property="isbnTextField" destination="d2v-0J-jL0" id="q77-LY-9eY"/>
                         <outlet property="priceTextField" destination="Rty-Lg-SbX" id="dWe-CL-jxr"/>
                         <outlet property="publisherLabel" destination="IzK-l9-6zR" id="AYq-5h-N4i"/>

@@ -19,6 +19,7 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var searchWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var coverImageView: UIImageView!
     
     var book: Book?
     
@@ -49,13 +50,15 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     @IBAction func retrieveBook(sender: AnyObject) {
         guard let isbn = isbnTextField.text else {return}
         BookService.shared.requestBook(isbn) { book in
+            guard let book = book else {return}
             self.book = book
             dispatch_async(dispatch_get_main_queue(), {
-                self.titleLabel.text = book?.title
-                self.authorLabel.text = book?.author
-                self.publisherLabel.text = book?.publisher
+                self.titleLabel.text = book.title
+                self.authorLabel.text = book.author
+                self.publisherLabel.text = book.publisher
                 self.saveButton.enabled = true
             })
+            self.coverImageView.getImage(isbn, link: book.coverLink)
         }
     }
     
