@@ -33,12 +33,7 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         
         if let book = book {
             navigationItem.title = book.title
-            titleLabel.text   = book.title
-            authorLabel.text   = book.author
-            courseTextField.text   = book.course
-            isbnTextField.text   = book.isbn
-            priceTextField.text   = String(book.price)
-            publisherLabel.text = book.publisher
+            configureView(book)
             
             isbnTextField.enabled = false
             searchWidthConstraint.constant = 0
@@ -53,17 +48,25 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
             guard let book = book else {return}
             self.book = book
             dispatch_async(dispatch_get_main_queue(), {
-                self.titleLabel.text = book.title
-                self.authorLabel.text = book.author
-                self.publisherLabel.text = book.publisher
+                self.configureView(book)
                 self.saveButton.enabled = true
             })
-            ImageService.shared.getImage(isbn, link: book.coverLink, completion: { (image) in
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.coverImageView.image = image
-                })
-            })
         }
+    }
+    
+    private func configureView(book: Book){
+        titleLabel.text   = book.title
+        authorLabel.text   = book.author
+        courseTextField.text   = book.course
+        isbnTextField.text   = book.isbn
+        priceTextField.text   = String(book.price)
+        publisherLabel.text = book.publisher
+        
+        ImageService.shared.getImage(book.isbn, link: book.coverLink, completion: { (image) in
+            dispatch_async(dispatch_get_main_queue(), {
+                self.coverImageView.image = image
+            })
+        })
     }
     
     // MARK: UITextFieldDelegate
