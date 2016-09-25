@@ -58,7 +58,11 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
                 self.publisherLabel.text = book.publisher
                 self.saveButton.enabled = true
             })
-            self.coverImageView.getImage(isbn, link: book.coverLink)
+            self.coverImageView.getImage(isbn, link: book.coverLink, completion: { (image) in
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.coverImageView.image = image
+                })
+            })
         }
     }
     

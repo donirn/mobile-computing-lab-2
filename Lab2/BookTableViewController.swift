@@ -46,6 +46,16 @@ class BookTableViewController: UITableViewController {
         cell.titleLabel.text = book.title
         cell.authorLabel.text = "by \(book.author)"
         cell.priceLabel.text = "\(book.price) SEK"
+        cell.coverImageView.image = nil
+        
+        cell.tag = Int(book.isbn)!
+        cell.coverImageView.getImage(book.isbn, link: book.coverLink) { (image) in
+            guard cell.tag == Int(book.isbn) else {return}
+            dispatch_async(dispatch_get_main_queue(), {
+                cell.coverImageView.image = image
+            })
+        }
+        
         
         return cell
     }

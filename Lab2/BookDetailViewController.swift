@@ -30,7 +30,11 @@ class BookDetailViewController: UIViewController,UITextFieldDelegate, UINavigati
             titleTextField.text = book.title
             courseTextField.text  = book.course
             publisherLabel.text = book.publisher
-            coverImageView.getImage(book.isbn, link: book.coverLink)
+            coverImageView.getImage(book.isbn, link: book.coverLink, completion: { (image) in
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.coverImageView.image = image
+                })
+            })
         }
         
         // Do any additional setup after loading the view.

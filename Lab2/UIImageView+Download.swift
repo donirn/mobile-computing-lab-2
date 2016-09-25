@@ -9,19 +9,17 @@
 import UIKit
 
 extension UIImageView {
-    func getImage(id: String, link: String){
+    func getImage(id: String, link: String, completion: (image: UIImage) -> Void){
         if let image = UIImage(id: id){
             // retrieved locally
-            dispatch_async(dispatch_get_main_queue(), {
-                self.image = image
-            })
+            completion(image: image)
         } else {
-            downloadedFrom(link, id: id)
+            downloadedFrom(link, id: id, completion: completion)
         }
     }
     
     
-    private func downloadedFrom(link: String, id: String) {
+    private func downloadedFrom(link: String, id: String, completion: (image: UIImage) -> Void) {
         guard let url = NSURL(string: link) else {return}
         NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
             guard
@@ -31,9 +29,7 @@ extension UIImageView {
                 let image = UIImage(data: data)
                 else { return }
             image.saveImage(id)
-            dispatch_async(dispatch_get_main_queue(), {
-                self.image = image
-            })
+            completion(image: image)
             }.resume()
     }
 }
