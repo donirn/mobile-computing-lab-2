@@ -15,7 +15,9 @@ class BookDetailViewController: UIViewController,UITextFieldDelegate, UINavigati
     @IBOutlet weak var authorTextField: UILabel!
     @IBOutlet weak var titleTextField: UILabel!
     @IBOutlet weak var courseTextField: UILabel!
+    @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var coverImageView: UIImageView!
     
     var book:Book?
     override func viewDidLoad() {
@@ -27,6 +29,12 @@ class BookDetailViewController: UIViewController,UITextFieldDelegate, UINavigati
             authorTextField.text  = book.author
             titleTextField.text = book.title
             courseTextField.text  = book.course
+            publisherLabel.text = book.publisher
+            ImageService.shared.getImage(book.isbn, link: book.coverLink, completion: { (image) in
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.coverImageView.image = image
+                })
+            })
         }
         
         // Do any additional setup after loading the view.

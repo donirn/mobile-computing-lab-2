@@ -11,23 +11,15 @@ import UIKit
 class BookViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     // MARK: Properties
     
-    
-    @IBOutlet weak var titleTextField: UITextField!
-    
-    @IBOutlet weak var authorTextField: UITextField!
-    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var publisherLabel: UILabel!
     @IBOutlet weak var courseTextField: UITextField!
-    
     @IBOutlet weak var isbnTextField: UITextField!
-    
-    
     @IBOutlet weak var priceTextField: UITextField!
-    
-    
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    
-    
-    
+    @IBOutlet weak var searchWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var coverImageView: UIImageView!
     
     var book: Book?
     
@@ -35,26 +27,46 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         super.viewDidLoad()
         
         // Handle the text field’s user input through delegate callbacks.
-        titleTextField.delegate = self
-        authorTextField.delegate = self
         courseTextField.delegate = self
         isbnTextField.delegate = self
         priceTextField.delegate = self
         
-        
         if let book = book {
             navigationItem.title = book.title
-            titleTextField.text   = book.title
-            authorTextField.text   = book.author
-            courseTextField.text   = book.course
-            isbnTextField.text   = book.isbn
-            priceTextField.text   = String(book.price)
+            configureView(book)
             
+            isbnTextField.enabled = false
+            searchWidthConstraint.constant = 0
+        } else {
+            saveButton.enabled = false
         }
+    }
+    
+    @IBAction func retrieveBook(sender: AnyObject) {
+        guard let isbn = isbnTextField.text else {return}
+        BookService.shared.requestBook(isbn) { book in
+            guard let book = book else {return}
+            self.book = book
+            dispatch_async(dispatch_get_main_queue(), {
+                self.configureView(book)
+                self.saveButton.enabled = true
+            })
+        }
+    }
+    
+    private func configureView(book: Book){
+        titleLabel.text   = book.title
+        authorLabel.text   = book.author
+        courseTextField.text   = book.course
+        isbnTextField.text   = book.isbn
+        priceTextField.text   = String(book.price)
+        publisherLabel.text = book.publisher
         
-        checkValidBookTitle()
-        
-        titleTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), forControlEvents: .EditingChanged)
+        ImageService.shared.getImage(book.isbn, link: book.coverLink, completion: { (image) in
+            dispatch_async(dispatch_get_main_queue(), {
+                self.coverImageView.image = image
+            })
+        })
     }
     
     // MARK: UITextFieldDelegate
@@ -65,23 +77,9 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
         return true
     }
     
-    func textFieldDidChange(textField: UITextField){
-        checkValidBookTitle()
-    }
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        // Disable the Save button while editing.
-        //  saveButton.enabled = false
-    }
-    
-    func checkValidBookTitle() {
-        // Disable the Save button if the text field is empty.
-        let text = titleTextField.text ?? ""
-        saveButton.enabled = !text.isEmpty
-    }
-    
     // MARK: UIImagePickerControllerDelegate
     
+    // TODO: take a look if it is used
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
         dismissViewControllerAnimated(true, completion: nil)
@@ -101,12 +99,8 @@ class BookViewController: UIViewController, UITextFieldDelegate, UINavigationCon
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if saveButton === sender {
-            let title = titleTextField.text ?? ""
-            let author = authorTextField.text ?? ""
-            let course = courseTextField.text ?? ""
-            let isbn = isbnTextField.text ?? ""
-            let price = Int(priceTextField.text!) ?? 0
-            book = Book(title: title, author: author, course: course,isbn: isbn, price: price)
+            book?.course = courseTextField.text ?? ""
+            book?.price = Int(priceTextField.text ?? "") ?? 0
         }
     }
     

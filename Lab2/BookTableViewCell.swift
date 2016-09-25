@@ -12,6 +12,7 @@ class BookTableViewCell: UITableViewCell {
     // MARK: Properties
     
     
+    @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
